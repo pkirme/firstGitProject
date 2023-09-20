@@ -26,16 +26,53 @@
 // }
 
 //QUERY SELECTOR
-let itemByQuerySelector = document.querySelector('.list-group-item:nth-child(2)');
-itemByQuerySelector.style.backgroundColor='green';
+// let itemByQuerySelector = document.querySelector('.list-group-item:nth-child(2)');
+// itemByQuerySelector.style.backgroundColor='green';
 
-let itemByQuerySelector1 = document.querySelector('.list-group-item:nth-child(3)');
-itemByQuerySelector1.style.visibility='hidden';
+// let itemByQuerySelector1 = document.querySelector('.list-group-item:nth-child(3)');
+// itemByQuerySelector1.style.visibility='hidden';
 
 //QUERY SELECTOR ALL
-let itemByQuerySelectorAll = document.querySelectorAll('.list-group-item');
-itemByQuerySelectorAll[1].style.color='green';
+// let itemByQuerySelectorAll = document.querySelectorAll('.list-group-item');
+// itemByQuerySelectorAll[1].style.color='green';
 
-for(let i=0;i<itemByQuerySelectorAll.length;i+=2){
-    itemByQuerySelectorAll[i].style.backgroundColor='green';
-}
+// for(let i=0;i<itemByQuerySelectorAll.length;i+=2){
+//     itemByQuerySelectorAll[i].style.backgroundColor='green';
+// }
+
+//Traversing the DOM
+//parentNode:
+let itemList = document.querySelector('#items');
+console.log(itemList.parentNode);
+
+//firstChild and firstElementChild:
+console.log(itemList.firstChild);
+itemList.firstElementChild.textContent='hello 1';
+
+//lastChild and lastElementChild:
+console.log(itemList.lastChild);
+itemList.lastElementChild.textContent='hello 4';
+
+//nextSibling and nextElementSibling:
+console.log(itemList.nextSibling);
+itemList.nextElementSibling.style.color='red';
+
+//previousSibling and previousElementSibling:
+console.log(itemList.previousSibling);
+itemList.previousElementSibling.style.color='green';
+
+//Create Element:
+let newDiv=document.createElement('div');
+newDiv.className='hello';
+newDiv.id='hello1';
+newDiv.setAttribute('title','hello div');
+
+//Append Text
+let newDivText=document.createTextNode('Hello new div');
+newDiv.append(newDivText);
+ 
+//Add new Element at specific position 
+let container =document.querySelector('header.container');
+let h1=document.querySelector('header h1');
+container.insertBefore(newDiv,h1);
+
