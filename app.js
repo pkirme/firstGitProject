@@ -15,3 +15,12 @@ item[1].style.backgroundColor="yellow";
 for(let i=0;i<item.length;i++){
     item[i].style.color='blue';
 }
+
+let itemByTagName = document.getElementsByTagName('li');
+console.log(itemByTagName);
+itemByTagName[3].textContent="Hello 4";
+itemByTagName[3].style.fontWeight='bold';
+itemByTagName[3].style.backgroundColor="yellow";
+for(let i=0;i<itemByTagName.length;i++){
+    itemByTagName[i].style.color='blue';
+}
