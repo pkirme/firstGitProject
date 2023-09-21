@@ -42,37 +42,49 @@
 
 //Traversing the DOM
 //parentNode:
-let itemList = document.querySelector('#items');
-console.log(itemList.parentNode);
+// let itemList = document.querySelector('#items');
+// console.log(itemList.parentNode);
 
-//firstChild and firstElementChild:
-console.log(itemList.firstChild);
-itemList.firstElementChild.textContent='hello 1';
+// //firstChild and firstElementChild:
+// console.log(itemList.firstChild);
+// itemList.firstElementChild.textContent='hello 1';
 
-//lastChild and lastElementChild:
-console.log(itemList.lastChild);
-itemList.lastElementChild.textContent='hello 4';
+// //lastChild and lastElementChild:
+// console.log(itemList.lastChild);
+// itemList.lastElementChild.textContent='hello 4';
 
-//nextSibling and nextElementSibling:
-console.log(itemList.nextSibling);
-itemList.nextElementSibling.style.color='red';
+// //nextSibling and nextElementSibling:
+// console.log(itemList.nextSibling);
+// itemList.nextElementSibling.style.color='red';
 
-//previousSibling and previousElementSibling:
-console.log(itemList.previousSibling);
-itemList.previousElementSibling.style.color='green';
+// //previousSibling and previousElementSibling:
+// console.log(itemList.previousSibling);
+// itemList.previousElementSibling.style.color='green';
 
-//Create Element:
-let newDiv=document.createElement('div');
-newDiv.className='hello';
-newDiv.id='hello1';
-newDiv.setAttribute('title','hello div');
+// //Create Element:
+// let newDiv=document.createElement('div');
+// newDiv.className='hello';
+// newDiv.id='hello1';
+// newDiv.setAttribute('title','hello div');
 
-//Append Text
-let newDivText=document.createTextNode('Hello new div');
-newDiv.append(newDivText);
+// //Append Text
+// let newDivText=document.createTextNode('Hello new div');
+// newDiv.append(newDivText);
  
-//Add new Element at specific position 
-let container =document.querySelector('header.container');
-let h1=document.querySelector('header h1');
-container.insertBefore(newDiv,h1);
+// //Add new Element at specific position 
+// let container =document.querySelector('header.container');
+// let h1=document.querySelector('header h1');
+// container.insertBefore(newDiv,h1);
+
+//task 1:Now go head and add HEllo word before Item Lister
+let createItem =document.createElement('h1');
+let getItem=document.querySelector('.col-md-6');
+createItem = '<h1>Hello word</h1>';
+getItem.innerHTML= createItem + getItem.innerHTML;
+
+// task 2: Now go head and add HEllo word before Item 1
+let item=document.getElementById('items');
+let li =document.createElement('li');
+li='<li>Hello word</li>';
+item.innerHTML = li + item.innerHTML;
 
