@@ -125,6 +125,10 @@ function addItem(e){
     
      //append new li element to itemList
      itemList.appendChild(li);
+
+     //Add item information in local storage.
+     let item = document.getElementsByClassName("list-group-item");
+     localStorage.setItem('item '+item.length,newItem+' '+descr);
 }
 
 //create function to remove item from the list
