@@ -76,15 +76,60 @@
 // let h1=document.querySelector('header h1');
 // container.insertBefore(newDiv,h1);
 
-//task 1:Now go head and add HEllo word before Item Lister
-let createItem =document.createElement('h1');
-let getItem=document.querySelector('.col-md-6');
-createItem = '<h1>Hello word</h1>';
-getItem.innerHTML= createItem + getItem.innerHTML;
+// //task 1:Now go head and add HEllo word before Item Lister
+// let createItem =document.createElement('h1');
+// let getItem=document.querySelector('.col-md-6');
+// createItem = '<h1>Hello word</h1>';
+// getItem.innerHTML= createItem + getItem.innerHTML;
 
-// task 2: Now go head and add HEllo word before Item 1
-let item=document.getElementById('items');
-let li =document.createElement('li');
-li='<li>Hello word</li>';
-item.innerHTML = li + item.innerHTML;
+// // task 2: Now go head and add HEllo word before Item 1
+// let item=document.getElementById('items');
+// let li =document.createElement('li');
+// li='<li>Hello word</li>';
+// item.innerHTML = li + item.innerHTML;
 
+//..................................................
+//Question 8:
+let form=document.getElementById('addForm');
+let itemList=document.getElementById('items');
+form.addEventListener('submit',addItem);
+itemList.addEventListener('click' ,removeItem);
+
+
+//create addItem function
+function addItem(e){
+    e.preventDefault();
+     //get input value from input box
+     let newItem = document.getElementById('item').value;
+
+     //create li element
+     let li = document.createElement('li');
+     li.className='list-group-item';
+     li.appendChild(document.createTextNode(newItem));
+
+     //create edit button 
+     let editBtn = document.createElement('button');
+     editBtn.className='btn btn-primary btn-sm float-right edit';
+     editBtn.appendChild(document.createTextNode('Edit'));
+     li.appendChild(editBtn);
+
+     //create delete button
+     let delBtn=document.createElement('button');
+     delBtn.className='btn btn-danger btn-sm float-right delete';
+     delBtn.appendChild(document.createTextNode('X'));
+     //append button to new li
+     li.appendChild(delBtn);    
+    
+     //append new li element to itemList
+     itemList.appendChild(li);
+}
+
+//create function to remeve item from the list
+function removeItem(e){
+    if(e.target.classList.contains('delete')){
+        if(confirm('Are you sure to delete the item?')){
+            let li=e.target.parentElement;
+            itemList.removeChild(li);
+        }
+    }
+}
