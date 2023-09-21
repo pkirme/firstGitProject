@@ -126,9 +126,19 @@ function addItem(e){
      //append new li element to itemList
      itemList.appendChild(li);
 
-     //Add item information in local storage.
-     let item = document.getElementsByClassName("list-group-item");
-     localStorage.setItem('item '+item.length,newItem+' '+descr);
+    //  //Add item information in local storage.
+        let item = document.getElementsByClassName("list-group-item");
+    //  localStorage.setItem('item '+item.length,newItem+' '+descr);
+
+    //Add item information in local storage in the form of object
+    let itemObj = {
+        itemName : newItem,
+        description : descr
+    };
+    //convert object into string formate.
+        let itemObjSer = JSON.stringify(itemObj);
+        localStorage.setItem('item '+item.length,itemObjSer);
+
 }
 
 //create function to remove item from the list
