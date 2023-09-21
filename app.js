@@ -101,11 +101,14 @@ function addItem(e){
     e.preventDefault();
      //get input value from input box
      let newItem = document.getElementById('item').value;
+     //get description value from input box
+     let descr = document.getElementById('description').value;
 
      //create li element
      let li = document.createElement('li');
      li.className='list-group-item';
-     li.appendChild(document.createTextNode(newItem));
+     li.appendChild(document.createTextNode(newItem+' '));
+     li.appendChild(document.createTextNode(descr));
 
      //create edit button 
      let editBtn = document.createElement('button');
@@ -124,7 +127,7 @@ function addItem(e){
      itemList.appendChild(li);
 }
 
-//create function to remeve item from the list
+//create function to remove item from the list
 function removeItem(e){
     if(e.target.classList.contains('delete')){
         if(confirm('Are you sure to delete the item?')){
@@ -133,3 +136,28 @@ function removeItem(e){
         }
     }
 }
+//........................................................
+
+//question 9:filter
+
+let filter=document.getElementById('filter');
+//add filter event
+filter.addEventListener('keyup',filterItem);
+
+// Add filter 
+ function filterItem(e){
+    
+    let txt=e.target.value.toLowerCase();
+    let items=itemList.getElementsByTagName('li');
+    let itemArr =[];
+    
+    Array.from(items).forEach(function(item){
+        let itemName=item.textContent;
+        if(itemName.toLocaleLowerCase().indexOf(txt)!=-1){
+            item.style.display='block';
+        }else{
+            item.style.display='none';
+        }
+    });
+ }
+ //.........................................................
