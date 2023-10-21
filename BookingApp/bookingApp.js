@@ -4,8 +4,6 @@ form.addEventListener('submit',addUser);
 let userList=document.getElementById('users');
 //userList.addEventListener('click',removeUser);
 
-printAll();
-
 //Add user
 function addUser(e){
     e.preventDefault();
@@ -19,11 +17,30 @@ function addUser(e){
     let userObjSer = JSON.stringify(userObj);
     //localStorage.setItem(userObj.emailId,userObjSer);
     axios.post('https://crudcrud.com/api/5d2d87e0c49243fb9f4470215c7db01f/Data',userObj)
-         .then(res=>console.log(res))
+         .then(res=>{
+            document.getElementById('userName').value="";
+            document.getElementById('emailId').value="";
+            document.getElementById('phNo').value="";
+             })
          .catch(err=>console.log(err));
+
+    
 
     //showUser(userObj);
 }
+
+//load user data
+window.addEventListener("DOMContentLoaded",()=>{
+    axios.get('https://crudcrud.com/api/5d2d87e0c49243fb9f4470215c7db01f/Data')
+         .then(res=>{
+            //console.log(res);
+            for(let i=0;i<res.data.length;i++){
+                //console.log(res.data[i]);
+                showUser(res.data[i]);
+            }
+         })
+         .catch(err=>console.log(err));
+})
 
 function showUser(userObj){
     let li = document.createElement('li');
@@ -67,12 +84,13 @@ function showUser(userObj){
 //         }
 //     }
 // }
-function printAll(){
-        for (let i = 0; i < localStorage.length; i++) {
-            const key = localStorage.key(i);
-            const userObj = JSON.parse(localStorage.getItem(key));
-            //create list
-            showUser(userObj);
+//function printAll(){
+    // for (let i = 0; i < localStorage.length; i++) {
+    //     const key = localStorage.key(i);
+    //     const userObj = JSON.parse(localStorage.getItem(key));
+    //     //create list            
+    //      showUser(userObj);
         
-    }
-}
+    // }
+    
+//}
