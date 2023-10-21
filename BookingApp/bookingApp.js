@@ -4,7 +4,7 @@ form.addEventListener('submit',addUser);
 let userList=document.getElementById('users');
 //userList.addEventListener('click',removeUser);
 
-
+printAll();
 
 //Add user
 function addUser(e){
@@ -17,9 +17,12 @@ function addUser(e){
     };
 
     let userObjSer = JSON.stringify(userObj);
-    localStorage.setItem(userObj.emailId,userObjSer);
+    //localStorage.setItem(userObj.emailId,userObjSer);
+    axios.post('https://crudcrud.com/api/5d2d87e0c49243fb9f4470215c7db01f/Data',userObj)
+         .then(res=>console.log(res))
+         .catch(err=>console.log(err));
 
-    showUser(userObj);
+    //showUser(userObj);
 }
 
 function showUser(userObj){
@@ -64,3 +67,12 @@ function showUser(userObj){
 //         }
 //     }
 // }
+function printAll(){
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            const userObj = JSON.parse(localStorage.getItem(key));
+            //create list
+            showUser(userObj);
+        
+    }
+}
