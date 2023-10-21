@@ -35,7 +35,7 @@ window.addEventListener("DOMContentLoaded",()=>{
          .then(res=>{
             //console.log(res);
             for(let i=0;i<res.data.length;i++){
-                //console.log(res.data[i]);
+                console.log(res.data[i]);
                 showUser(res.data[i]);
             }
          })
@@ -54,7 +54,11 @@ function showUser(userObj){
     delBtn.appendChild(document.createTextNode('Delete'));
     //Remove user from local storage
     delBtn.onclick = () =>{
-        localStorage.removeItem(userObj.emailId);
+        //localStorage.removeItem(userObj.emailId);
+        //console.log(userObj._id);
+        axios.delete(`https://crudcrud.com/api/5d2d87e0c49243fb9f4470215c7db01f/Data/${userObj._id}`)
+             .then(res=>console.log(res))
+             .catch(err=>console.log(err));
         userList.removeChild(li);
     }
     li.appendChild(delBtn);
