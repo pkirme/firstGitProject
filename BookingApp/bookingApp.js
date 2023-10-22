@@ -3,7 +3,7 @@ form.addEventListener('submit',addUser);
 
 let userList=document.getElementById('users');
 //userList.addEventListener('click',removeUser);
-
+let userId=undefined;
 //Add user
 function addUser(e){
     e.preventDefault();
@@ -14,24 +14,29 @@ function addUser(e){
         phone:document.getElementById('phNo').value
     };
 
-    let userObjSer = JSON.stringify(userObj);
+    //let userObjSer = JSON.stringify(userObj);
+   
     //localStorage.setItem(userObj.emailId,userObjSer);
-    axios.post('https://crudcrud.com/api/5d2d87e0c49243fb9f4470215c7db01f/Data',userObj)
+    if(userId===undefined){
+        axios.post('https://crudcrud.com/api/914fc9e3b4aa4d6dab6dceafcfa0377a/Data',userObj)
          .then(res=>{
             document.getElementById('userName').value="";
             document.getElementById('emailId').value="";
             document.getElementById('phNo').value="";
              })
          .catch(err=>console.log(err));
-
-    
-
-    //showUser(userObj);
+    }else{
+        //console.log(userId);
+        axios.put(`https://crudcrud.com/api/914fc9e3b4aa4d6dab6dceafcfa0377a/Data/${userId}`,userObj)
+             .then(res=>console.log(res))
+             .catch(err=>console.log(err));
+    }
+      //showUser(userObj);
 }
 
 //load user data
 window.addEventListener("DOMContentLoaded",()=>{
-    axios.get('https://crudcrud.com/api/5d2d87e0c49243fb9f4470215c7db01f/Data')
+    axios.get('https://crudcrud.com/api/914fc9e3b4aa4d6dab6dceafcfa0377a/Data')
          .then(res=>{
             //console.log(res);
             for(let i=0;i<res.data.length;i++){
@@ -56,7 +61,7 @@ function showUser(userObj){
     delBtn.onclick = () =>{
         //localStorage.removeItem(userObj.emailId);
         //console.log(userObj._id);
-        axios.delete(`https://crudcrud.com/api/5d2d87e0c49243fb9f4470215c7db01f/Data/${userObj._id}`)
+        axios.delete(`https://crudcrud.com/api/914fc9e3b4aa4d6dab6dceafcfa0377a/Data/${userObj._id}`)
              .then(res=>console.log(res))
              .catch(err=>console.log(err));
         userList.removeChild(li);
@@ -71,8 +76,9 @@ function showUser(userObj){
         document.getElementById('userName').value=userObj.userName;
         document.getElementById('emailId').value=userObj.emailId;
         document.getElementById('phNo').value=userObj.phone;
-        localStorage.removeItem(userObj.emailId);
+        userId=userObj._id;
         userList.removeChild(li);
+        
     }
     li.appendChild(editBtn);
     
