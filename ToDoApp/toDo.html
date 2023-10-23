@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <title>ToDo Form</title>
+    
+</head>
+<body>
+    <div class="container">
+        <div id="main" class="card card-body">
+         <h4 class="title">Information</h4>
+         <form id="addForm" class="form-inline mb-3">
+            <label>ToDo Name:</label>
+            <input type="text" id="toDoName" placeholder="Enter toDo name here" class="form-control mr-2">
+            <label>Description:</label>
+            <input type="text" id="description" placeholder="Enter description here" class="form-control mr-2">
+            <input type="submit" class="btn btn-dark" value="Add">
+         </form>
+         <h2 class="title">ToDo Remaining:</h2>
+         <ul id="toDoRemainList" class="list-group">
+           
+         </ul>
+
+         <h2 class="title">ToDo Done:</h2>
+         <ul id="toDoDoneList" class="list-group">
+           
+         </ul>
+        </div>
+       </div>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"></script>
+       <script src="toDo.js"></script>
+</body>
+</html>
