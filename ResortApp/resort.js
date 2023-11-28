@@ -1,6 +1,6 @@
 let form=document.getElementById('addForm');
 form.addEventListener('submit',addTable);
-let url='https://crudcrud.com/api/9f1a7451dac4481d8ce15d279095fcf4/info';
+let url='https://crudcrud.com/api/04f451909ec346d6bbd5a0da7b4e4de9/info';
 
 let table1List=document.getElementById('table1List');
 let table2List=document.getElementById('table2List');
@@ -45,12 +45,12 @@ window.addEventListener("DOMContentLoaded",()=>{
 function showTable1(data){
     let li = document.createElement('li');
     li.className='list-group-item';
-    li.appendChild(document.createTextNode(`${data.dish} ${data.price}`));
+    li.appendChild(document.createTextNode(`${data.dish} : ${data.price}`));
     table1List.appendChild(li);  
 
     //create delete button.
     let delBtn = document.createElement('button');
-    delBtn.className='btn btn-primary btn-sm float-right delete';
+    delBtn.className='btn btn-danger btn-sm float-right delete';
     delBtn.appendChild(document.createTextNode('Cancel order'));
     //Remove user from local storage
     delBtn.onclick = () =>{
@@ -69,12 +69,12 @@ function showTable1(data){
 function showTable2(data){
     let li = document.createElement('li');
     li.className='list-group-item';
-    li.appendChild(document.createTextNode(`${data.dish} ${data.price}`));
+    li.appendChild(document.createTextNode(`${data.dish} : ${data.price}`));
     table2List.appendChild(li);  
 
     //create delete button.
     let delBtn = document.createElement('button');
-    delBtn.className='btn btn-primary btn-sm float-right delete';
+    delBtn.className='btn btn-danger btn-sm float-right delete';
     delBtn.appendChild(document.createTextNode('Cancel order'));
     //Remove user from local storage
     delBtn.onclick = () =>{
@@ -93,12 +93,12 @@ function showTable2(data){
 function showTable3(data){
     let li = document.createElement('li');
     li.className='list-group-item';
-    li.appendChild(document.createTextNode(`${data.dish} ${data.price}`));
+    li.appendChild(document.createTextNode(`${data.dish} : ${data.price}`));
     table3List.appendChild(li);  
 
     //create delete button.
     let delBtn = document.createElement('button');
-    delBtn.className='btn btn-primary btn-sm float-right delete';
+    delBtn.className='btn btn-danger btn-sm float-right delete';
     delBtn.appendChild(document.createTextNode('Cancel order'));
     //Remove user from local storage
     delBtn.onclick = () =>{
