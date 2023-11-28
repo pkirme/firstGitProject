@@ -4,7 +4,7 @@ form.addEventListener('submit',addToDoList);
 let toRemainDoList=document.getElementById('toDoRemainList');
 let toDoDoneList=document.getElementById('toDoDoneList');
 let itemId=undefined;
-let url='https://crudcrud.com/api/9f1a7451dac4481d8ce15d279095fcf4/Data';
+let url='https://crudcrud.com/api/04f451909ec346d6bbd5a0da7b4e4de9/Data';
 //create ToDoList
 function addToDoList(e){
     e.preventDefault();
@@ -45,12 +45,12 @@ window.addEventListener("DOMContentLoaded",()=>{
 function showRemainItem(item){
     let li=document.createElement('Li');
     li.className='list-group-item';
-    li.appendChild(document.createTextNode(`${item.toDoName} ${item.desc}`));
+    li.appendChild(document.createTextNode(`${item.toDoName} : ${item.desc}`));
     toRemainDoList.appendChild(li);
 
     //create delete button
     let delBtn=document.createElement('button');
-    delBtn.className='btn btn-primary btn-sm float-right delete';
+    delBtn.className='btn btn-danger btn-sm float-right delete';
     delBtn.appendChild(document.createTextNode('X'));
 
     //Remove item
@@ -65,7 +65,7 @@ function showRemainItem(item){
 
     //create done button
     let doneBtn=document.createElement('button');
-    doneBtn.className='btn btn-primary btn-sm float-right delete';
+    doneBtn.className='btn btn-success btn-sm float-right delete';
     doneBtn.appendChild(document.createTextNode('Done'));
     doneBtn.onclick=()=>{
         const updateItem={
@@ -92,6 +92,20 @@ function showRemainItem(item){
 function showDoneItem(item){
         let liIn=document.createElement('Li');
         liIn.className='list-group-item';
-        liIn.appendChild(document.createTextNode(`${item.toDoName} ${item.desc}`));
+        liIn.appendChild(document.createTextNode(`${item.toDoName} : ${item.desc}`));
+        //create delete button
+        let delBtn=document.createElement('button');
+        delBtn.className='btn btn-danger btn-sm float-right delete';
+        delBtn.appendChild(document.createTextNode('X'));
+
+        //Remove item
+        delBtn.onclick=()=>{
+            console.log(item._id);
+            axios.delete(`${url}/${item._id}`)
+                .then(res=>console.log(res))
+                .catch(err=>console.log(err));
+                toDoDoneList.removeChild(liIn);
+        }
+        liIn.appendChild(delBtn);
         toDoDoneList.appendChild(liIn);
 }
