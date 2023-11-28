@@ -4,6 +4,7 @@ form.addEventListener('submit',addUser);
 let userList=document.getElementById('users');
 //userList.addEventListener('click',removeUser);
 let userId=undefined;
+let url='https://crudcrud.com/api/9f1a7451dac4481d8ce15d279095fcf4/Data';
 //Add user
 function addUser(e){
     e.preventDefault();
@@ -18,7 +19,7 @@ function addUser(e){
    
     //localStorage.setItem(userObj.emailId,userObjSer);
     if(userId===undefined){
-        axios.post('https://crudcrud.com/api/914fc9e3b4aa4d6dab6dceafcfa0377a/Data',userObj)
+        axios.post(url,userObj)
          .then(res=>{
             document.getElementById('userName').value="";
             document.getElementById('emailId').value="";
@@ -27,7 +28,7 @@ function addUser(e){
          .catch(err=>console.log(err));
     }else{
         //console.log(userId);
-        axios.put(`https://crudcrud.com/api/914fc9e3b4aa4d6dab6dceafcfa0377a/Data/${userId}`,userObj)
+        axios.put(`${url}/${userId}`,userObj)
              .then(res=>console.log(res))
              .catch(err=>console.log(err));
     }
@@ -36,7 +37,7 @@ function addUser(e){
 
 //load user data
 window.addEventListener("DOMContentLoaded",()=>{
-    axios.get('https://crudcrud.com/api/914fc9e3b4aa4d6dab6dceafcfa0377a/Data')
+    axios.get(url)
          .then(res=>{
             //console.log(res);
             for(let i=0;i<res.data.length;i++){
@@ -61,7 +62,7 @@ function showUser(userObj){
     delBtn.onclick = () =>{
         //localStorage.removeItem(userObj.emailId);
         //console.log(userObj._id);
-        axios.delete(`https://crudcrud.com/api/914fc9e3b4aa4d6dab6dceafcfa0377a/Data/${userObj._id}`)
+        axios.delete(`${url}/${userObj._id}`)
              .then(res=>console.log(res))
              .catch(err=>console.log(err));
         userList.removeChild(li);
@@ -85,22 +86,3 @@ function showUser(userObj){
     userList.appendChild(li);
 }
 
-//Remove user from local storage
-// function removeUser(e){
-//     if(e.target.classList.contains('delete')){
-//         if(confirm('Are you sure?')){
-//             let li=e.target.parentElement;
-//             userList.removeChild(li);
-//         }
-//     }
-// }
-//function printAll(){
-    // for (let i = 0; i < localStorage.length; i++) {
-    //     const key = localStorage.key(i);
-    //     const userObj = JSON.parse(localStorage.getItem(key));
-    //     //create list            
-    //      showUser(userObj);
-        
-    // }
-    
-//}
