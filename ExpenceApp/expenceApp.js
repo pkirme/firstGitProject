@@ -33,7 +33,7 @@ function print(obj){
     //create list
     let li = document.createElement('li');
     li.className='list-group-item';
-    li.appendChild(document.createTextNode(`${obj.expence}  ${obj.descr}  ${obj.select}`));
+    li.appendChild(document.createTextNode(`Price: ${obj.expence}    Description: ${obj.descr}     Category: ${obj.select}`));
     
 
     //create delete button
@@ -49,7 +49,7 @@ function print(obj){
 
     //create edit button
     let btnEdit=document.createElement('button');
-    btnEdit.className='btn btn-primary btn-sm float-right edit';
+    btnEdit.className='btn btn-danger btn-sm float-right edit';
     btnEdit.appendChild(document.createTextNode('Edit'));
     btnEdit.onclick=()=>{
         document.getElementById('expence').value=obj.expence;
@@ -69,34 +69,35 @@ function printAll(){
         const obj = JSON.parse(localStorage.getItem(key));
         console.log(obj);
         //create list
-        let li = document.createElement('li');
-        li.className='list-group-item';
-        li.appendChild(document.createTextNode(`${obj.expence}  ${obj.descr}  ${obj.select}`));
+        print(obj);
+        // let li = document.createElement('li');
+        // li.className='list-group-item';
+        // li.appendChild(document.createTextNode(`${obj.expence}  ${obj.descr}  ${obj.select}`));
         
 
-        //create delete button
-        let btnDel=document.createElement('button');
-        btnDel.className='btn btn-primary btn-sm float-right delete';
-        btnDel.appendChild(document.createTextNode('Delete'));
-        //delete list
-        btnDel.onclick=()=>{
-            localStorage.removeItem(obj.select);
-            list.removeChild(li);
-        }
-        li.appendChild(btnDel);
+        // //create delete button
+        // let btnDel=document.createElement('button');
+        // btnDel.className='btn btn-primary btn-sm float-right delete';
+        // btnDel.appendChild(document.createTextNode('Delete'));
+        // //delete list
+        // btnDel.onclick=()=>{
+        //     localStorage.removeItem(obj.select);
+        //     list.removeChild(li);
+        // }
+        // li.appendChild(btnDel);
 
-        //create edit button
-        let btnEdit=document.createElement('button');
-        btnEdit.className='btn btn-primary btn-sm float-right edit';
-        btnEdit.appendChild(document.createTextNode('Edit'));
-        btnEdit.onclick=()=>{
-            document.getElementById('expence').value=obj.expence;
-            document.getElementById('description').value=obj.descr;
-            document.getElementById('select').value=obj.select;
-            localStorage.removeItem(obj.select);
-            list.removeChild(li);
-        }
-        li.appendChild(btnEdit);
-        list.appendChild(li);
+        // //create edit button
+        // let btnEdit=document.createElement('button');
+        // btnEdit.className='btn btn-primary btn-sm float-right edit';
+        // btnEdit.appendChild(document.createTextNode('Edit'));
+        // btnEdit.onclick=()=>{
+        //     document.getElementById('expence').value=obj.expence;
+        //     document.getElementById('description').value=obj.descr;
+        //     document.getElementById('select').value=obj.select;
+        //     localStorage.removeItem(obj.select);
+        //     list.removeChild(li);
+        // }
+        // li.appendChild(btnEdit);
+        // list.appendChild(li);
       }
 }
