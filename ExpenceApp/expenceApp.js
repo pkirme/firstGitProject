@@ -35,7 +35,6 @@ function print(obj){
     li.className='list-group-item';
     li.appendChild(document.createTextNode(`Price: ${obj.expence}    Description: ${obj.descr}     Category: ${obj.select}`));
     
-
     //create delete button
     let btnDel=document.createElement('button');
     btnDel.className='btn btn-primary btn-sm float-right delete';
