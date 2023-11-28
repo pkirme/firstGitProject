@@ -1,7 +1,6 @@
 let form=document.getElementById('addForm');
 form.addEventListener('submit',addTable);
 let url='https://crudcrud.com/api/04f451909ec346d6bbd5a0da7b4e4de9/info';
-
 let table1List=document.getElementById('table1List');
 let table2List=document.getElementById('table2List');
 let table3List=document.getElementById('table3List');
