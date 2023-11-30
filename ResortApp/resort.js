@@ -29,16 +29,16 @@ window.addEventListener("DOMContentLoaded",async()=>{
 })
 
 function showData(data){
-    let table = `${data.tableNo}List`;
-    let tableList=document.getElementById(table);
+    const table = `${data.tableNo}List`;
+    const tableList=document.getElementById(table);
     console.log(tableList);
-    let li = document.createElement('li');
+    const li = document.createElement('li');
     li.className='list-group-item';
     li.appendChild(document.createTextNode(`${data.dish} : ${data.price}`));
    
 
     //create delete button.
-    let delBtn = document.createElement('button');
+    const delBtn = document.createElement('button');
     delBtn.className='btn btn-danger btn-sm float-right delete';
     delBtn.appendChild(document.createTextNode('Cancel order'));
     //Remove data from server
