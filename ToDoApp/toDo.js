@@ -6,7 +6,7 @@ let toDoDoneList=document.getElementById('toDoDoneList');
 let itemId=undefined;
 let url='https://crudcrud.com/api/04f451909ec346d6bbd5a0da7b4e4de9/Data';
 //create ToDoList
-function addToDoList(e){
+async function addToDoList(e){
     e.preventDefault();
     const item={
         toDoName:document.getElementById('toDoName').value,
@@ -14,31 +14,42 @@ function addToDoList(e){
         done:false
     };
     
-    axios.post(url,item)
-         .then(res=>{
-                console.log(res);
-                location.reload();
-          })
-         .catch(err=>console.log(err));
-    
+    // axios.post(url,item)
+    //      .then(res=>{
+    //             console.log(res);
+    //             location.reload();
+    //       })
+    //      .catch(err=>console.log(err));
+    const responce = await axios.post(url,item);
+    const data =responce.data;
+    showRemainItem(data);  
 }
 
 //load user data
-window.addEventListener("DOMContentLoaded",()=>{
-    axios.get(url)
-         .then(res=>{
-            //console.log(res);
-            for(let i=0;i<res.data.length;i++){
-                console.log(res.data[i]);
-                if(res.data[i].done==false){
-                    showRemainItem(res.data[i]);
-                }else{
-                    showDoneItem(res.data[i]);
-                }
+window.addEventListener("DOMContentLoaded",async()=>{
+    // axios.get(url)
+    //      .then(res=>{
+    //         //console.log(res);
+    //         for(let i=0;i<res.data.length;i++){
+    //             console.log(res.data[i]);
+    //             if(res.data[i].done==false){
+    //                 showRemainItem(res.data[i]);
+    //             }else{
+    //                 showDoneItem(res.data[i]);
+    //             }
                 
-            }
-         })
-         .catch(err=>console.log(err));
+    //         }
+    //      })
+    //      .catch(err=>console.log(err));
+    const responce = await axios.get(url);
+    const data=responce.data;
+    for(let i=0;i<data.length;i++){
+        if(data[i].done==false){
+            showRemainItem(data[i]);
+        }else{
+            showDoneItem(data[i]);
+        }
+    }
 })
 
 //print item list
@@ -54,11 +65,12 @@ function showRemainItem(item){
     delBtn.appendChild(document.createTextNode('X'));
 
     //Remove item
-    delBtn.onclick=()=>{
-        console.log(item._id);
-        axios.delete(`${url}/${item._id}`)
-             .then(res=>console.log(res))
-             .catch(err=>console.log(err));
+    delBtn.onclick=async()=>{
+        // console.log(item._id);
+        // axios.delete(`${url}/${item._id}`)
+        //      .then(res=>console.log(res))
+        //      .catch(err=>console.log(err));
+        const responce = await axios.delete(`${url}/${item_id}`);
         toRemainDoList.removeChild(li);
     }
     li.appendChild(delBtn);
