@@ -1,39 +1,12 @@
 import "./ExpenceItem.css";
-function ExpenceItem() {
-  const LocationOfExpenditure = "Nagpur";
+function ExpenceItem(props) {
   return (
-    <div>
-      <div>
-        <h2>Expense Items</h2>
-      </div>
-      <div className="expense-item">
-        <div>
-          <h3>Food</h3>
-        </div>
-        <div className="expense-item__description">
-          <h2>{LocationOfExpenditure}</h2>
-          <div className="expense-item__price">Rs 10</div>
-        </div>
-      </div>
-
-      <div className="expense-item">
-        <div>
-          <h3>Petrol</h3>
-        </div>
-        <div className="expense-item__description">
-          <h2>{LocationOfExpenditure}</h2>
-          <div className="expense-item__price">Rs 100</div>
-        </div>
-      </div>
-
-      <div className="expense-item">
-        <div>
-          <h3>Movies</h3>
-        </div>
-        <div className="expense-item__description">
-          <h2>{LocationOfExpenditure}</h2>
-          <div className="expense-item__price">Rs 200</div>
-        </div>
+    <div className="expense-item">
+      <h2>{props.date.toISOString()}</h2>
+      <div className="expense-item__description">
+        <h2>{props.title}</h2>
+        <h2>{props.locationOfExpenditure}</h2>
+        <div className="expense-item__price">Rs {props.amount}</div>
       </div>
     </div>
   );

@@ -1,8 +1,45 @@
-import ExpenceItem from './components/ExpenceItem';
+import ExpenceItem from "./components/ExpenceItem";
 function App() {
+  const expenses = [
+    {
+      id: "e1",
+      title: "Toilet Paper",
+      amount: 94.12,
+      date: new Date(2020, 7, 14),
+      LocationOfExpenditure: "Nagpur",
+    },
+    {
+      id: "e2",
+      title: "New TV",
+      amount: 799.49,
+      date: new Date(2021, 2, 12),
+      LocationOfExpenditure: "Pune",
+    },
+    {
+      id: "e3",
+      title: "Car Insurance",
+      amount: 294.67,
+      date: new Date(2021, 2, 28),
+      LocationOfExpenditure: "Wardha",
+    },
+    {
+      id: "e4",
+      title: "New Desk (Wooden)",
+      amount: 450,
+      date: new Date(2021, 5, 12),
+      LocationOfExpenditure: "Nagar",
+    },
+  ];
   return (
     <div>
-      <ExpenceItem></ExpenceItem>
+      {expenses.map((expence) => (
+        <ExpenceItem
+          title={expence.title}
+          amount={expence.amount}
+          date={expence.date}
+          LocationOfExpenditure={expence.LocationOfExpenditure}
+        ></ExpenceItem>
+      ))}
     </div>
   );
 }
