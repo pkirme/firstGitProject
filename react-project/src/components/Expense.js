@@ -9,7 +9,7 @@ function Expense(props) {
             title={expense.title}
             amount={expense.amount}
             date={expense.date}
-            locationOfExpenditure={expense.LocationOfExpenditure}
+            locationOfExpenditure={expense.LocationOfExpenditure}            
           />
         </div>
       ))}

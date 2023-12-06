@@ -30,6 +30,7 @@ function App() {
       LocationOfExpenditure: "Nagar",
     },
   ];
+  
   return (
     <div>
       <Expense data={expenses} />
