@@ -1,15 +1,18 @@
 import "./ExpenseItem.css";
-import ExpenceDate from "./ExpenseDate";
-import ExpenceItem from "./ExpenseItem";
+import ExpenseItem from "./ExpenseItem";
 function Expense(props) {
   return (
-    <div className="expense-item">
-      <ExpenceDate date={props.date}/>
-      <ExpenceItem
-        title={props.title}
-        amount={props.amount}
-        locationOfExpenditure={props.LocationOfExpenditure}
-      />
+    <div>
+      {props.data.map((expense) => (
+        <div className="expense-item">
+          <ExpenseItem
+            title={expense.title}
+            amount={expense.amount}
+            date={expense.date}
+            locationOfExpenditure={expense.LocationOfExpenditure}
+          />
+        </div>
+      ))}
     </div>
   );
 }
