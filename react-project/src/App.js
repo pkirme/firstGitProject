@@ -32,7 +32,7 @@ function App() {
   ];
   return (
     <div>
-      <Expense data={expenses}/>
+      <Expense data={expenses} />
     </div>
   );
 }
