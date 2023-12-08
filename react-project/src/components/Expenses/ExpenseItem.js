@@ -3,7 +3,7 @@ import ExpenseDate from "./ExpenseDate";
 import Card from "../UI/Card";
 
 const ExpenseItem = (props) => {
-  const DeleteExpence = () => {
+  const DeleteExpense = () => {
     console.log("Item deleted");
   };
   return (
@@ -15,7 +15,7 @@ const ExpenseItem = (props) => {
         <div className="expense-item__price">Rs {props.amount}</div>
       </div>
 
-      <button onClick={DeleteExpence}>Delete</button>
+      <button onClick={DeleteExpense}>Delete</button>
     </Card>
   );
 };
