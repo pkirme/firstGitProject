@@ -2,6 +2,10 @@
 import React from "react";
 
 const ExpenseForm = () => {
+  const onTitleChange = (event) => {
+    console.log(event.target.value);
+  };
+
   const AddForm = (e) => {
     e.preventDefault();
     console.log(document.getElementById("expenseTitle").value);
@@ -17,6 +21,7 @@ const ExpenseForm = () => {
           type="text"
           placeholder="Enter Expense title here"
           id="expenseTitle"
+          onChange={onTitleChange}
         ></input>
 
         <label>Expense Amount</label>
