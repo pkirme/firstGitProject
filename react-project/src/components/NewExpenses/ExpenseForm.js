@@ -1,10 +1,21 @@
 //import "../UI/Card.css";
-import React from "react";
+import React, { useState } from "react";
 import "./ExpenseForm.css";
 
 const ExpenseForm = () => {
-  const onTitleChange = (event) => {
-    console.log(event.target.value);
+  const [enterTitle, setEnterTitle] = useState("");
+  const titleChangeHandler = (event) => {
+    setEnterTitle(event.target.value);
+  };
+
+  const [enterAmount, setEnterAmount] = useState("");
+  const amountChangeHandler = (event) => {
+    setEnterAmount(event.target.value);
+  };
+
+  const [enterDate, setEnterDate] = useState("");
+  const dateChangeHandler = (event) => {
+    setEnterDate(event.target.value);
   };
 
   return (
@@ -16,7 +27,7 @@ const ExpenseForm = () => {
             className="new-expense__control input"
             type="text"
             placeholder="Enter Expense title here"
-            onChange={onTitleChange}
+            onChange={titleChangeHandler}
           ></input>
         </div>
 
@@ -28,6 +39,7 @@ const ExpenseForm = () => {
             placeholder="Enter Expense Ammount here"
             min="0.01"
             step="0.01"
+            onChange={amountChangeHandler}
           ></input>
         </div>
 
@@ -38,11 +50,12 @@ const ExpenseForm = () => {
             type="date"
             min="2019-01-01"
             max="2023-12-31"
+            onChange={dateChangeHandler}
           ></input>
         </div>
       </div>
 
-      <div className="new-expense__actions" >
+      <div className="new-expense__actions">
         <button>Add</button>
       </div>
     </form>
