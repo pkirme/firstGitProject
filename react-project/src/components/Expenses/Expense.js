@@ -11,7 +11,6 @@ const Expense = (props) => {
             title={expense.title}
             amount={expense.amount}
             date={expense.date}
-            locationOfExpenditure={expense.LocationOfExpenditure}
           />
         </div>
       ))}

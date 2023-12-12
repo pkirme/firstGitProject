@@ -1,40 +1,40 @@
 import Expense from "./components/Expenses/Expense";
 import NewExpense from "./components/NewExpenses/NewExpense";
-const App = () => {
+
+const App = (props) => {
   const expenses = [
     {
       id: "e1",
       title: "Toilet Paper",
       amount: 94.12,
       date: new Date(2020, 7, 14),
-      LocationOfExpenditure: "Nagpur",
     },
     {
       id: "e2",
       title: "New TV",
       amount: 799.49,
       date: new Date(2021, 2, 12),
-      LocationOfExpenditure: "Pune",
     },
     {
       id: "e3",
       title: "Car Insurance",
       amount: 294.67,
       date: new Date(2021, 2, 28),
-      LocationOfExpenditure: "Wardha",
     },
     {
       id: "e4",
       title: "New Desk (Wooden)",
       amount: 450,
       date: new Date(2021, 5, 12),
-      LocationOfExpenditure: "Nagar",
     },
   ];
+  const addExpenseHandler = (expense) => {
+    console.log(expense);
+  };
 
   return (
     <div>
-      < NewExpense/>
+      <NewExpense onAddExpense={addExpenseHandler} />
       <Expense data={expenses} />
     </div>
   );
