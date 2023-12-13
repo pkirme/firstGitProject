@@ -1,39 +1,20 @@
-//import "../UI/Card.css";
 import React, { useState } from "react";
 import "./ExpenseForm.css";
 
 const ExpenseForm = (props) => {
-  // const [userInput, setUserInput] = useState({
-  //   enterTitle: "",
-  //   enterAmount: "",
-  //   enterDate: "",
-  // });
-
   const [enterTitle, setEnterTitle] = useState("");
   const titleChangeHandler = (event) => {
     setEnterTitle(event.target.value);
-    // setUserInput({
-    //   ...userInput,
-    //   enterTitle: event.target.value,
-    // });
   };
 
   const [enterAmount, setEnterAmount] = useState("");
   const amountChangeHandler = (event) => {
     setEnterAmount(event.target.value);
-    // setUserInput({
-    //   ...userInput,
-    //   enterAmount: event.target.value,
-    // });
   };
 
   const [enterDate, setEnterDate] = useState("");
   const dateChangeHandler = (event) => {
     setEnterDate(event.target.value);
-    // setUserInput({
-    //   ...userInput,
-    //   enterDate: event.target.value,
-    // });
   };
 
   const submitHandler = (event) => {
@@ -43,6 +24,7 @@ const ExpenseForm = (props) => {
       amount: enterAmount,
       date: new Date(enterDate),
     };
+
     props.onSaveExpenseData(expenseData);
 
     setEnterTitle("");
@@ -59,7 +41,6 @@ const ExpenseForm = (props) => {
             className="new-expense__control input"
             type="text"
             value={enterTitle}
-            placeholder="Enter Expense title here"
             onChange={titleChangeHandler}
           ></input>
         </div>
@@ -70,7 +51,6 @@ const ExpenseForm = (props) => {
             className="new-expense__control input"
             type="number"
             value={enterAmount}
-            placeholder="Enter Expense Ammount here"
             min="0.01"
             step="0.01"
             onChange={amountChangeHandler}
