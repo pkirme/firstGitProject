@@ -5,8 +5,9 @@ import ExpenseItem from "./ExpenseItem";
 const ExpensesList = (props) => {
   let expenseChangeYear;
   if (props.items.length === 0) {
-    expenseChangeYear = <p>No Expenses found</p>;
-  } else if (props.items.length === 1) {
+    return <h2 className="expenses-list__fallback">No Expenses Found !</h2>;
+  }
+  if (props.items.length === 1) {
     expenseChangeYear = (
       <div>
         {props.items.map((expense) => (
@@ -17,7 +18,7 @@ const ExpensesList = (props) => {
             date={expense.date}
           />
         ))}
-        <p>Only single Expense here. Please add more...</p>
+        <h3 className="expenses-list__fallback">Only single Expense here. Please add more...</h3>
       </div>
     );
   } else {
@@ -30,10 +31,6 @@ const ExpensesList = (props) => {
       />
     ));
   }
-    return (
-        <ul className="expenses-list">
-            {expenseChangeYear}
-        </ul>
-    )
+  return <ul className="expenses-list">{expenseChangeYear}</ul>;
 };
 export default ExpensesList;
