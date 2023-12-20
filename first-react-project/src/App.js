@@ -4,9 +4,17 @@ import UserList from "./Components/Users/UsersList";
 
 function App() {
   const [addUserList, setAddUserList] = useState([]);
-  const addUserListHandler = (userName, userAge) => {
+  const addUserListHandler = (userName, userAge, clgName) => {
     setAddUserList((preUsers) => {
-      return [...preUsers, { name: userName, age: userAge , id : Math.random().toString()}];
+      return [
+        ...preUsers,
+        {
+          name: userName,
+          age: userAge,
+          clgName: clgName,
+          id: Math.random().toString(),
+        },
+      ];
     });
   };
   return (
