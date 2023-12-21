@@ -7,18 +7,24 @@ import Button from "../UI/Button/Button";
 const Login = (props) => {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [emailIsValid, setEmailIsValid] = useState();
+  const [enteredClgName, setEnteredClgName] = useState("");
+  const [clgIsValid, setEnteredClgNameIsValid] = useState();
   const [enteredPassword, setEnteredPassword] = useState("");
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
     setFormIsValid(
-      enteredEmail.includes("@") && enteredPassword.trim().length > 6
+      enteredEmail.includes("@") && enteredPassword.trim().length > 6 && enteredClgName.trim().length>0
     );
-  }, [enteredEmail, enteredPassword]);
+  }, [enteredEmail, enteredPassword, enteredClgName]);
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
+  };
+
+  const clgNameChangeHandler = (event) => {
+    setEnteredClgName(event.target.value);
   };
 
   const passwordChangeHandler = (event) => {
@@ -31,6 +37,10 @@ const Login = (props) => {
 
   const validatePasswordHandler = () => {
     setPasswordIsValid(enteredPassword.trim().length > 6);
+  };
+
+  const validateClgNameHandler= () => {
+    setEnteredClgNameIsValid(enteredClgName.trim().length>0);
   };
 
   const submitHandler = (event) => {
@@ -67,6 +77,21 @@ const Login = (props) => {
             value={enteredPassword}
             onChange={passwordChangeHandler}
             onBlur={validatePasswordHandler}
+          />
+        </div>
+
+        <div
+          className={`${classes.control} ${
+            clgIsValid === false ? classes.invalid : ""
+          }`}
+        >
+          <label htmlFor="clgName">College Name</label>
+          <input
+            type="text"
+            id="clgName"
+            value={enteredClgName}
+            onChange={clgNameChangeHandler}
+            onBlur={validateClgNameHandler}
           />
         </div>
         <div className={classes.actions}>
