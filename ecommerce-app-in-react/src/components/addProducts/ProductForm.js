@@ -4,6 +4,9 @@ const ProductForm = (props) => {
   //get product Id
   const [updateProductId, setProductId] = useState("");
   const changeProductIdHandler = (event) => {
+    if(event.target.value.trim().length>0){
+      setIsValid(true);
+    }
     setProductId(event.target.value);
   };
 
@@ -47,7 +50,7 @@ const ProductForm = (props) => {
     setProductName("");
     setPrice("");
     setCategory("Select");
-    setIsValid(true);
+    
     props.onSaveProduct(newProduct);
   };
 
