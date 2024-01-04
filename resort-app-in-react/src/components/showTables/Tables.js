@@ -6,18 +6,24 @@ const Tables = (props) => {
   };
 
   const filterData = props.data.filter((item) => props.id === item.tableNo);
-  
+
+  //filter data according to condition.
+  let tableContent=<p>No order is found!!!</p>
+  if(filterData.length>0){
+    tableContent=filterData.map((item) => (
+      <TableData
+        key={item.id}
+        id={item.id}
+        dish={item.dish}
+        price={item.price}
+        onDelete={onDeleteHandler}
+      ></TableData>
+    ))
+  }
+
   return (
     <>
-      {filterData.map((item) => (
-        <TableData
-          key={item.id}
-          id={item.id}
-          dish={item.dish}
-          price={item.price}
-          onDelete={onDeleteHandler}
-        ></TableData>
-      ))}
+      {tableContent}
     </>
   );
 };
