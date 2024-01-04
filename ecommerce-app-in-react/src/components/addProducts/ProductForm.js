@@ -18,16 +18,24 @@ const ProductForm = (props) => {
   const changePriceHandler = (event) => {
     setPrice(event.target.value);
   };
-
   //get catogory
   const [updateCategory, setCategory] = useState("");
   const changeCategoryHandler = (event) => {
     setCategory(event.target.value);
   };
 
+  //check input price valid or not
+  const [isValid, setIsValid] = useState(true);
+
   //submit form
   const newProductAddHandler = (event) => {
     event.preventDefault();
+
+    if (updateProductId.trim().length === 0) {
+      setIsValid(false);
+      return;
+    }
+
     const newProduct = {
       id: updateProductId,
       product: updateProductName,
@@ -39,6 +47,7 @@ const ProductForm = (props) => {
     setProductName("");
     setPrice("");
     setCategory("Select");
+    setIsValid(true);
     props.onSaveProduct(newProduct);
   };
 
@@ -47,6 +56,7 @@ const ProductForm = (props) => {
       <form onSubmit={newProductAddHandler}>
         <label>Product ID:</label>
         <input
+          style={{ borderColor: !isValid ? "red" : "black" }}
           type="number"
           value={updateProductId}
           onChange={changeProductIdHandler}
