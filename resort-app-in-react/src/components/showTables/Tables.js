@@ -8,7 +8,7 @@ const Tables = (props) => {
   const filterData = props.data.filter((item) => props.id === item.tableNo);
 
   //filter data according to condition.
-  let tableContent=<p>No order is found!!!</p>
+  let tableContent=<p>Order not found!!!</p>
   if(filterData.length>0){
     tableContent=filterData.map((item) => (
       <TableData
