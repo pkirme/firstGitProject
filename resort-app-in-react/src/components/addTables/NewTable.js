@@ -9,7 +9,7 @@ const NewTable = (props) => {
   };
   return (
     <>
-      <TableForm onSaveTable={onSaveTableHandler} />
+      <TableForm onSaveTable={onSaveTableHandler}/>
     </>
   );
 };

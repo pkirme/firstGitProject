@@ -1,10 +1,5 @@
-import React, { useState } from "react";
-
 const TableData = (props) => {
-  //Delete the order
-  
   const deleteItemHandler = () => {
-    //setValue("masala dosa");
     props.onDelete(props.id);
   };
 
@@ -12,8 +7,8 @@ const TableData = (props) => {
     <>
       <ul>
         <li>
-          {props.dish} - RS.{props.price} {props.id}
-          <button onClick={deleteItemHandler}>X</button>
+          {props.dish} - RS.{props.price}
+          <button onClick={deleteItemHandler}>Cancel Order</button>
         </li>
       </ul>
     </>

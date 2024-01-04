@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import TableData from "./TableData";
 const Tables = (props) => {
-  const onDeleteHandler=(id)=>{
-       props.onDelete(id);
-  }
-  console.log(props);
+  const onDeleteHandler = (id) => {
+    props.onDelete(id);
+  };
+
   const filterData = props.data.filter((item) => props.id === item.tableNo);
+  
   return (
     <>
       {filterData.map((item) => (
