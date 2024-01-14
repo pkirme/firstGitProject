@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const ProductForm = (props) => {
   //get product Id
   const [updateProductId, setProductId] = useState("");
   const changeProductIdHandler = (event) => {
-    if(event.target.value.trim().length>0){
-      setIsValid(true);
-    }
     setProductId(event.target.value);
   };
 
@@ -27,17 +24,9 @@ const ProductForm = (props) => {
     setCategory(event.target.value);
   };
 
-  //check input price valid or not
-  const [isValid, setIsValid] = useState(true);
-
   //submit form
   const newProductAddHandler = (event) => {
     event.preventDefault();
-
-    if (updateProductId.trim().length === 0) {
-      setIsValid(false);
-      return;
-    }
 
     const newProduct = {
       id: updateProductId,
@@ -45,12 +34,13 @@ const ProductForm = (props) => {
       price: updatePrice,
       category: updateCategory,
     };
+    
     console.log(newProduct);
     setProductId("");
     setProductName("");
     setPrice("");
     setCategory("Select");
-    
+
     props.onSaveProduct(newProduct);
   };
 
@@ -59,7 +49,6 @@ const ProductForm = (props) => {
       <form onSubmit={newProductAddHandler}>
         <label>Product ID:</label>
         <input
-          style={{ borderColor: !isValid ? "red" : "black" }}
           type="number"
           value={updateProductId}
           onChange={changeProductIdHandler}
