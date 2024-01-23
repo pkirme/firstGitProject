@@ -8,7 +8,7 @@ const ProductData = (props) => {
         <ul>
           <li>
             {props.product} - RS.{props.price}
-            <button onClick={deleteItemHandler}>Cancel Order</button>
+            <button onClick={deleteItemHandler}>Delete Product</button>
           </li>
         </ul>
       </>

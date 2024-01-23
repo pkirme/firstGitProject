@@ -18,7 +18,7 @@ const ProductForm = (props) => {
   const changePriceHandler = (event) => {
     setPrice(event.target.value);
   };
-  //get catogory
+  //get category
   const [updateCategory, setCategory] = useState("");
   const changeCategoryHandler = (event) => {
     setCategory(event.target.value);
@@ -34,7 +34,7 @@ const ProductForm = (props) => {
       price: updatePrice,
       category: updateCategory,
     };
-    
+
     console.log(newProduct);
     setProductId("");
     setProductName("");
@@ -52,6 +52,7 @@ const ProductForm = (props) => {
           type="number"
           value={updateProductId}
           onChange={changeProductIdHandler}
+          required
         />
 
         <label>Product Name:</label>
@@ -59,6 +60,7 @@ const ProductForm = (props) => {
           type="text"
           value={updateProductName}
           onChange={changeProductNameHandler}
+          required
         />
 
         <label>Price:</label>
@@ -66,17 +68,18 @@ const ProductForm = (props) => {
           type="number"
           value={updatePrice}
           onChange={changePriceHandler}
+          required
         />
 
         <label>Choose Category:</label>
-        <select value={updateCategory} onChange={changeCategoryHandler}>
+        <select value={updateCategory} onChange={changeCategoryHandler} style={{margin:4}}>
           <option defaultValue="Select">Select</option>
           <option value="skincare">Skincare</option>
           <option value="food">Food</option>
           <option value="electronics">Electronics</option>
         </select>
 
-        <button type="submit">Add</button>
+        <button type="submit">Add Product</button>
       </form>
     </>
   );

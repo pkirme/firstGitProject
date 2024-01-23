@@ -15,6 +15,13 @@ const MealItem = (props) => {
       price: props.price,
     });
   };
+
+  const onRemoveFromCartHandler = () => {
+    cartCtx.removeItem({
+      id: props.id,
+    });
+  };
+
   return (
     <li className={classes.meal}>
       <div>
@@ -23,7 +30,10 @@ const MealItem = (props) => {
         <div className={classes.price}>{price}</div>
       </div>
       <div>
-        <MealItemForm onAddToCart={onAddToCartHendler} />
+        <MealItemForm
+          onAddToCart={onAddToCartHendler}
+          onRemoveFromCart={onRemoveFromCartHandler}
+        />
       </div>
     </li>
   );
