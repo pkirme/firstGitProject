@@ -1,44 +1,41 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import CartContext from "./CartContext";
 
 const CartContextProvider = (props) => {
-  const [cart, setCart] = useState({ cartItem: [], totalAmount: 0 });
+  const [cart, setCart] = useState({ cartItems: [], totalAmount: 0 });
 
   const addToCartHandler = (item) => {
     setCart((prev) => {
-      const existingItemIndex = prev.cartItem.findIndex(
+      const existingItemIndex = cart.cartItems.findIndex(
         (cartItem) => cartItem.id === item.id
       );
-
-      const existingItem = prev.cartItem[existingItemIndex];
+      const existingItem = prev.cartItems[existingItemIndex];
       let updatedItem;
       if (existingItem) {
         const updateItem = {
           ...existingItem,
           amount: existingItem.amount + item.amount,
         };
-        updatedItem = [...prev.cartItem];
-
+        updatedItem = [...prev.cartItems];
         updatedItem[existingItemIndex] = updateItem;
-        // console.log(updatedItem[existingItem]);
       } else {
-        updatedItem = [...prev.cartItem, item];
+        updatedItem = [...prev.cartItems, item];
       }
 
       const updatedTotalAmount = prev.totalAmount + item.price * item.amount;
       return {
-        cartItem: updatedItem,
+        cartItems: updatedItem,
         totalAmount: updatedTotalAmount,
       };
     });
   };
 
   const cartContext = {
-    cartItem: cart.cartItem,
+    cartItems: cart.cartItems,
     totalAmount: cart.totalAmount,
     addToCart: addToCartHandler,
   };
-  // console.log(cartContext);
+
   return (
     <CartContext.Provider value={cartContext}>
       {props.children}
