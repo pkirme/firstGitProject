@@ -1,65 +1,36 @@
-import React, { useState } from "react";
-import { CartContextProvider, MedicineProvider } from "./contexts";
-import MedicineForm from "./components/AddMedicine/MedicineForm";
-import ShowMedicine from "./components/ShowMedicine/ShowMedicine";
-import Cart from "./components/Cart/Cart";
+import { useState } from "react";
+import AddMedicine from "./components/AddMedicine";
+import Navbar from "./components/Navbar";
+import ShowMedicine from "./components/ShowMedicine";
+import CartContextProvider from "./context/CartContextProvider";
+import MedicineContextProvider from "./context/MedicineContextProvider";
+import Cart from "./components/Cart";
 
 function App() {
-  const [medicines, setMedicines] = useState([]);
-  const [carts, setCart] = useState({ cart: [], totalAmount: 0 });
+  const [showModal, setShowModal] = useState(false);
 
-  //Add new medicine
-  const addMedicine = (medicine) => {
-    setMedicines((prev) => [...prev, { id: Math.random(), ...medicine }]);
+  const handleShowModal = () => {
+    setShowModal(true);
   };
 
-  //Update quntity
-  const updateMedicine = (id, updatedMedicine) => {
-    setMedicines((prev) =>
-      prev.map((prevMedicine) =>
-        prevMedicine.id === id ? updatedMedicine : prevMedicine
-      )
-    );
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
-
-  //Add to cart
-  const addToCart = (medicine) => {
-    setCart((prev) => {
-      let existingItemIndex = prev.cart.findIndex(
-        (item) => item.id === medicine.id
-      );
-      const existingItem = prev.cart[existingItemIndex];
-      let updatedItems;
-
-      if (existingItem) {
-        const updateItem = {
-          ...existingItem,
-          quantity: existingItem.quantity + medicine.quantity,
-        };
-        updatedItems = [...prev.cart];
-        updatedItems[existingItemIndex] = updateItem;
-      } else {
-        updatedItems = [...prev.cart, medicine];
-      }
-
-      const updatedTotalAmount =
-        prev.totalAmount + medicine.price * medicine.quantity;
-
-      return {
-        cart: updatedItems,
-        totalAmount: updatedTotalAmount,
-      };
-    });
-  };
-
   return (
-    <MedicineProvider value={{ medicines, addMedicine, updateMedicine }}>
-      <CartContextProvider value={{ carts, addToCart }}>
-        <Cart />
-        <MedicineForm />
-        <ShowMedicine />
-      </CartContextProvider>
-    </MedicineProvider>
+    <>
+      <MedicineContextProvider>
+        <CartContextProvider>
+          {showModal && <Cart onCartHide={handleCloseModal} />}
+          <Navbar onClick={handleShowModal} />
+          <div className="container">
+            <AddMedicine />
+          </div>
+          <div className="container">
+            <ShowMedicine />
+          </div>
+        </CartContextProvider>
+      </MedicineContextProvider>
+    </>
   );
 }
 
