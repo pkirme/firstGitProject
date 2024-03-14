@@ -14,6 +14,9 @@ const CartContextProvider = (props) => {
       if (existingItem) {
         const updateItem = {
           ...existingItem,
+          large: existingItem.large + item.large,
+          small: existingItem.small + item.small,
+          medium: existingItem.medium + item.medium,
           amount: existingItem.amount + item.amount,
         };
         updatedItem = [...prev.cartItems];
@@ -23,6 +26,7 @@ const CartContextProvider = (props) => {
       }
 
       const updatedTotalAmount = prev.totalAmount + item.price * item.amount;
+      
       return {
         cartItems: updatedItem,
         totalAmount: updatedTotalAmount,

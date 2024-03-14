@@ -22,7 +22,9 @@ function App() {
     <>
       <ShoeContextProvider>
         <CartContextProvider>
-          {showModal && <Cart onCartHide={handleCloseModal} />}
+          {showModal && (
+            <Cart onCartHide={handleCloseModal}/>
+          )}
           <Navbar onClick={handleShowModal} />
           <div className="container">
             <AddShoe />

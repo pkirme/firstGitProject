@@ -13,27 +13,31 @@ const AddShoe = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    const newList = {
-      id: id,
-      shoeName: shoeName,
-      description: description,
-      price: price,
-      large: large,
-      medium: medium,
-      small: small,
-    };
+    if (id && shoeName && description && price && large && medium && small) {
+      const newList = {
+        id: id,
+        shoeName: shoeName,
+        description: description,
+        price: price,
+        large: large,
+        medium: medium,
+        small: small,
+      };
 
-    shoeCtx.addShoe(newList);
+      shoeCtx.addShoe(newList);
 
-    setShoeId("");
-    setShoeName("");
-    setDescription("");
-    setPrice("");
-    setLarge("");
-    setMedium("");
-    setSmall("");
+      setShoeId("");
+      setShoeName("");
+      setDescription("");
+      setPrice("");
+      setLarge("");
+      setMedium("");
+      setSmall("");
+    } else {
+      alert("One of field is empty!");
+    }
   };
-  
+
   return (
     <form onSubmit={onSubmitHandler}>
       <div className="mb-3">
@@ -87,7 +91,9 @@ const AddShoe = () => {
       </div>
 
       <div className="mb-3">
-        <p>Quantity : </p>
+        <strong>
+          <p>Quantity : </p>
+        </strong>
         <label htmlFor="larg" className="form-label">
           Large
         </label>
