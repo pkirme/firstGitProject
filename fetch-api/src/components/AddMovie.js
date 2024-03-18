@@ -14,6 +14,9 @@ const AddMovie = (props) => {
       releaseDate: date,
     };
     props.addMovie(movie);
+    setTitle("");
+    setOpText("");
+    setDate("");
   };
 
   return (
