@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import MoviesList from "./components/MoviesList";
 import "./App.css";
 import Loader from "./components/Loader";
+import AddMovie from "./components/AddMovie";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -60,8 +61,15 @@ function App() {
     content = <MoviesList movies={movies} />;
   }
 
+  const addMovieHandler = (movie) => {
+    console.log(movie);
+  };
+
   return (
     <React.Fragment>
+      <section>
+        <AddMovie addMovie={addMovieHandler} />
+      </section>
       <section>
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
         <button onClick={cancelRetry}>Cancel Retry</button>
