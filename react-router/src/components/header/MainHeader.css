@@ -1,0 +1,39 @@
+/* Navbar.css */
+
+/* Style the entire navbar */
+.nav {
+  background-color: rgb(63, 18, 18);
+  padding: 1rem; /* Add some padding for spacing */
+}
+
+/* Style the list items (links) */
+.ul {
+  list-style-type: none;
+  display: flex; /* Display the list items in a row */
+  gap: 5rem;
+  justify-content: center;
+  /* Add spacing between the links */
+}
+/* li {
+  color: white;
+  font-weight: bold;
+  font-size: 1.5 rem;
+  text-decoration: none;
+} */
+
+.link {
+  color: rgb(161, 33, 33);
+  font-weight: bold;
+  font-size: 1.5 rem;
+  text-decoration: none;
+}
+
+/* Change link color on hover */
+.link:hover {
+  color: gray;
+  border-bottom: 4px solid gray;
+}
+.link:active {
+  color: gray;
+  border-bottom: 4px solid gray;
+}

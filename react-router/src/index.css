@@ -1,0 +1,18 @@
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+body {
+  background-color: #e0e9f5;
+  margin: 0;
+}
+main {
+  margin-top: 7rem;
+  text-align: center;
+}
+h1,
+h2,
+h3,
+p {
+  color: #042b5f;
+}
