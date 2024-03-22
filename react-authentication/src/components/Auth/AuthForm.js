@@ -17,35 +17,44 @@ const AuthForm = () => {
     setIsLoading(true);
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
+    let url;
 
     try {
       if (isLogin) {
+        url =
+          "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBhWgo-onnehVfjggey6b2N9Rel6F0txZc";
       } else {
-        const response = await fetch(
-          "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWgo-onnehVfjggey6b2N9Rel6F0txZc",
-          {
-            method: "POST",
-            body: JSON.stringify({
-              email: enteredEmail,
-              password: enteredPassword,
-              returnSecureToken: true,
-            }),
-            header: {
-              "Content-type": "application/json",
-            },
-          }
-        );
-        if (response.ok) {
-        } else {
-          const data = await response.json();
-          let errorMsg = "Authentication Fail!!";
-          if (data && data.error && data.error.message) {
-            errorMsg = data.error.message;
-          }
-          alert(errorMsg);
-        }
+        url =
+          "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWgo-onnehVfjggey6b2N9Rel6F0txZc";
       }
-    } catch (error) {}
+
+      const response = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify({
+          email: enteredEmail,
+          password: enteredPassword,
+          returnSecureToken: true,
+        }),
+        header: {
+          "Content-type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+      } else {
+        const data = await response.json();
+        let errorMsg = "Authentication Fail!!";
+        // if (data && data.error && data.error.message) {
+        //   errorMsg = data.error.message;
+        // }
+        // alert(errorMsg);
+        throw new Error(errorMsg);
+      }
+    } catch (error) {
+      alert(error.message);
+    }
 
     setIsLoading(false);
     emailInputRef.current.value = "";
