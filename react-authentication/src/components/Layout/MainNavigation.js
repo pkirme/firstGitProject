@@ -9,6 +9,7 @@ const MainNavigation = () => {
   const isLoggedIn = authCtx.isLoggedIn;
   console.log(isLoggedIn);
 
+  //For logout
   const logOutHandler = () => {
     authCtx.logOut();
     authCtx.isLogeddIn = false;
