@@ -47,18 +47,11 @@ const AuthForm = () => {
 
       if (response.ok) {
         const data = await response.json();
-        // console.log(data.idToken);
-       
         authCtx.login(data.idToken);
         //Redirect page
         history.replace("/");
       } else {
-        // const data = await response.json();
         let errorMsg = "Authentication Fail!!";
-        // if (data && data.error && data.error.message) {
-        //   errorMsg = data.error.message;
-        // }
-        // alert(errorMsg);
         throw new Error(errorMsg);
       }
     } catch (error) {
@@ -66,8 +59,8 @@ const AuthForm = () => {
     }
 
     setIsLoading(false);
-    // emailInputRef.current.value = "";
-    // passwordInputRef.current.value = "";
+    emailInputRef.current.value = "";
+    passwordInputRef.current.value = "";
   };
 
   return (
