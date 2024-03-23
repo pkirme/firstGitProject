@@ -12,7 +12,6 @@ const MainNavigation = () => {
   //For logout
   const logOutHandler = () => {
     authCtx.logOut();
-    authCtx.isLogeddIn = false;
   };
 
   return (
@@ -28,14 +27,14 @@ const MainNavigation = () => {
             </li>
           )}
           {isLoggedIn && (
-            <>
-              <li>
-                <Link to="/profile">Profile</Link>
-              </li>
-              <li>
-                <button onClick={logOutHandler}>Logout</button>
-              </li>
-            </>
+            <li>
+              <Link to="/profile">Profile</Link>
+            </li>
+          )}
+          {isLoggedIn && (
+            <li>
+              <button onClick={logOutHandler}>Logout</button>
+            </li>
           )}
         </ul>
       </nav>

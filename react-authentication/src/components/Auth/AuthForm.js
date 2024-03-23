@@ -48,6 +48,7 @@ const AuthForm = () => {
       if (response.ok) {
         const data = await response.json();
         // console.log(data.idToken);
+       
         authCtx.login(data.idToken);
         //Redirect page
         history.replace("/");
