@@ -10,7 +10,7 @@ import { Redirect } from "react-router-dom";
 
 function App() {
   const authCtx = useContext(AuthContext);
-  // const isUserLoggedIn = authCtx.isLogeddIn;
+ 
   return (
     <Layout>
       <Switch>
