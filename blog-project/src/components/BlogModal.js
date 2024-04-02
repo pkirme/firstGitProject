@@ -34,7 +34,7 @@ const BlogModal = (props) => {
     <Modal show={props.show} onHide={props.handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>
-          {props.value === "add" ? "Add Blog" : "Update Blog"}
+          {props.value === "add" ? "Post Blog" : "Update Blog"}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -72,7 +72,7 @@ const BlogModal = (props) => {
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={addBlogHandler}>
-          {props.value === "add" ? "Add Blog" : "Update Blog"}
+          {props.value === "add" ? "Post Blog" : "Update Blog"}
         </Button>
         <Button variant="primary" onClick={props.handleClose}>
           Close
