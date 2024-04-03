@@ -1,32 +1,51 @@
-import { useRef, useContext } from "react";
+import { useContext, useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import BlogContext from "../context/BlogContext";
 
 const BlogModal = (props) => {
-  const imageUrlInputRef = useRef();
-  const titleInputRef = useRef();
-  const descInputRef = useRef();
+  const [imgUrl, setImgUrl] = useState(
+    props.status === "update" ? props.url : ""
+  );
+  const [title, setTitle] = useState(
+    props.status === "update" ? props.title : ""
+  );
+  const [desc, setDesc] = useState(props.status === "update" ? props.desc : "");
+
   const blogCtx = useContext(BlogContext);
 
   const addBlogHandler = () => {
-    if (
-      imageUrlInputRef.current.value.length === 0 ||
-      titleInputRef.current.value.length === 0 ||
-      descInputRef.current.value.length === 0
-    ) {
+    if (imgUrl.length === 0 || title.length === 0 || desc.length === 0) {
       alert("One of field is empty!!");
     } else {
       const blog = {
-        id: Date.now(),
-        imageUrl: imageUrlInputRef.current.value,
-        title: titleInputRef.current.value,
-        description: descInputRef.current.value,
+        id: Date.now().toString(),
+        imageUrl: imgUrl,
+        title: title,
+        description: desc,
       };
       blogCtx.addBlog(blog);
       props.handleClose();
-      imageUrlInputRef.current.value = "";
-      titleInputRef.current.value = "";
-      descInputRef.current.value = "";
+      setImgUrl("");
+      setTitle("");
+      setDesc("");
+    }
+  };
+
+  const updateBlogHandler = () => {
+    if (imgUrl.length === 0 || title.length === 0 || desc.length === 0) {
+      alert("One of field is empty!!");
+    } else {
+      const blog = {
+        id:props.id,
+        imageUrl: imgUrl,
+        title: title,
+        description: desc,
+      };
+      blogCtx.updateBlog(blog);
+      // props.handleClose();
+      // setImgUrl("");
+      // setTitle("");
+      // setDesc("");
     }
   };
 
@@ -34,7 +53,7 @@ const BlogModal = (props) => {
     <Modal show={props.show} onHide={props.handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>
-          {props.value === "add" ? "Post Blog" : "Update Blog"}
+          {props.status === "add" ? "Post Blog" : "Update Blog"}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -44,8 +63,8 @@ const BlogModal = (props) => {
             <Form.Control
               type="text"
               placeholder="Enter image url"
-              ref={imageUrlInputRef}
-              required
+              value={imgUrl}
+              onChange={(e) => setImgUrl(e.target.value)}
             />
           </Form.Group>
 
@@ -54,8 +73,8 @@ const BlogModal = (props) => {
             <Form.Control
               type="text"
               placeholder="Enter title"
-              ref={titleInputRef}
-              required
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </Form.Group>
 
@@ -64,15 +83,18 @@ const BlogModal = (props) => {
             <Form.Control
               type="text"
               placeholder="Enter blog description"
-              ref={descInputRef}
-              required
+              value={desc}
+              onChange={(e) => setDesc(e.target.value)}
             />
           </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={addBlogHandler}>
-          {props.value === "add" ? "Post Blog" : "Update Blog"}
+        <Button
+          variant="secondary"
+          onClick={props.status === "add" ? addBlogHandler : updateBlogHandler}
+        >
+          {props.status === "add" ? "Post Blog" : "Update Blog"}
         </Button>
         <Button variant="primary" onClick={props.handleClose}>
           Close

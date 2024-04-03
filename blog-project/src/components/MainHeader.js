@@ -23,7 +23,7 @@ const MainHeader = () => {
             Add Blog
           </Button>
 
-          <BlogModal show={show} handleClose={handleClose} value="add"/>
+          <BlogModal show={show} handleClose={handleClose} status="add" />
         </Navbar.Collapse>
       </Container>
     </Navbar>

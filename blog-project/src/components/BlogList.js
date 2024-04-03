@@ -1,7 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useCallback, useEffect } from "react";
 import BlogContext from "../context/BlogContext";
 import { Button, Container, Row, Col, Card } from "react-bootstrap";
 import BlogModal from "./BlogModal";
+import axios from "axios";
 
 const BlogList = () => {
   const [show, setShow] = useState(false);
@@ -10,19 +11,29 @@ const BlogList = () => {
 
   const blogCtx = useContext(BlogContext);
 
-  //   const onUpdateHandler = (blog) => {
-  //     blogCtx.updateBlog(blog);
-  //   };
+  const url = `https://crudcrud.com/api/10019ff1888448ad9eeb323e1a4eaa7e/Blog`;
+
+  const fetchDataHandler = useCallback(async () => {
+    try {
+      const response = await axios.get(url);
+      const data = response.data;
+      blogCtx.setBlogs(data);
+    } catch (error) {}
+  }, []);
+
+  useEffect(() => {
+    fetchDataHandler();
+  }, [fetchDataHandler]);
 
   const onRemoveHandler = (id) => {
     blogCtx.removeBlog(id);
   };
   return (
     <Container className="mt-5">
-      <Row className="g-4">
+      <Row className="g-4 mt-10">
         {blogCtx.blogList.map((item) => (
-          <Col md={3}>
-            <Card className="shadow-lg" id={item.id}>
+          <Col md={3} key={item.id}>
+            <Card className="shadow-lg">
               <Card.Img variant="top" src={item.imageUrl} />
               <Card.Body style={{ backgroundColor: "#EEE9DD" }}>
                 <Container>
@@ -36,7 +47,15 @@ const BlogList = () => {
                   >
                     Update
                   </Button>
-                  <BlogModal show={show} handleClose={handleClose} />
+                  <BlogModal
+                    show={show}
+                    handleClose={handleClose}
+                    status="update"
+                    id={item.id}
+                    url={item.imageUrl}
+                    title={item.title}
+                    desc={item.description}
+                  />
 
                   <Button
                     variant="danger"

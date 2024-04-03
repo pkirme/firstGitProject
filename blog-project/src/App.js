@@ -6,7 +6,10 @@ import BlogList from "./components/BlogList";
 function App() {
   return (
     <Container>
-      <MainHeader />
+      <div>
+        <MainHeader />
+      </div>
+
       <div>
         <BlogList />
       </div>
