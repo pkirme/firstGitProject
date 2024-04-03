@@ -5,13 +5,19 @@ import BlogModal from "./BlogModal";
 import axios from "axios";
 
 const BlogList = () => {
+  const [selectedBlog, setSelectedBlog] = useState(null);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = (blog) => {
+    console.log(blog);
+    setSelectedBlog(blog);
+
+    setShow(true);
+  };
 
   const blogCtx = useContext(BlogContext);
 
-  const url = `https://crudcrud.com/api/10019ff1888448ad9eeb323e1a4eaa7e/Blog`;
+  const url = `https://crudcrud.com/api/f15ebec3d7134d2680a13f5789e2489a/Blogs`;
 
   const fetchDataHandler = useCallback(async () => {
     try {
@@ -43,7 +49,7 @@ const BlogList = () => {
                     variant="primary"
                     type="submit"
                     className="mx-2"
-                    onClick={handleShow}
+                    onClick={() => handleShow(item)}
                   >
                     Update
                   </Button>
@@ -51,17 +57,17 @@ const BlogList = () => {
                     show={show}
                     handleClose={handleClose}
                     status="update"
-                    id={item.id}
-                    url={item.imageUrl}
-                    title={item.title}
-                    desc={item.description}
+                    id={selectedBlog?.id}
+                    url={selectedBlog?.imageUrl}
+                    title={selectedBlog?.title}
+                    desc={selectedBlog?.description}
                   />
 
                   <Button
                     variant="danger"
                     type="submit"
                     onClick={() => {
-                      onRemoveHandler(item.id);
+                      onRemoveHandler(item._id);
                     }}
                   >
                     Remove

@@ -5,7 +5,7 @@ const BlogContext = createContext();
 
 export const BlogContextProvider = (props) => {
   const [blogs, setBlogs] = useState([]);
-  const url = `https://crudcrud.com/api/10019ff1888448ad9eeb323e1a4eaa7e/Blog`;
+  const url = `https://crudcrud.com/api/f15ebec3d7134d2680a13f5789e2489a/Blogs`;
 
   const addBlogHandler = async (blog) => {
     try {
@@ -46,9 +46,12 @@ export const BlogContextProvider = (props) => {
     }
   };
 
-  const removeBlogHandler = (id) => {
-    const updatedList = blogs.filter((item) => item.id !== id);
-    setBlogs(updatedList);
+  const removeBlogHandler = async (id) => {
+    await axios.delete(`${url}/${id}`);
+    // const updatedList = blogs.filter((item) => item.id !== id);
+    const response = await axios.get(url);
+    const data = response.data;
+    setBlogs(data);
   };
 
   const blogContext = {
