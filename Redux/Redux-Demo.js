@@ -13,6 +13,18 @@ const counterReducer = (state = { counter: 0 }, action) => {
       counter: state.counter - 1,
     };
   }
+
+  if (action.type === "incrementBy2") {
+    return {
+      counter: state.counter + 2,
+    };
+  }
+
+  if (action.type === "decrementBy2") {
+    return {
+      counter: state.counter - 2,
+    };
+  }
 };
 
 //create strore
@@ -23,10 +35,13 @@ const counterSubscriber = () => {
 };
 
 store.subscribe(counterSubscriber);
-for (let i = 0; i < 5; i++) {
-  store.dispatch({ type: "increment" });
-}
+// for (let i = 0; i < 5; i++) {
+//   store.dispatch({ type: "increment" });
+// }
 
-for (let i = 0; i < 5; i++) {
-  store.dispatch({ type: "decrement" });
-}
+// for (let i = 0; i < 5; i++) {
+//   store.dispatch({ type: "decrement" });
+// }
+
+store.dispatch({ type: "incrementBy2" });
+store.dispatch({ type: "decrementBy2" });
