@@ -15,11 +15,9 @@ const Header = () => {
         <nav>
           <ul>
             <li>
-              {" "}
               <a href="/">My Products</a>
             </li>
             <li>
-              {" "}
               <a href="/">My Sales</a>
             </li>
             <li>

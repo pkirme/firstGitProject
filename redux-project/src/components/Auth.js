@@ -6,7 +6,7 @@ const Auth = () => {
   const dispatch = useDispatch();
   const onLoginHandler = () => {
     // e.preventDefault();
-    dispatch(authAction.logout());
+    dispatch(authAction.login());
   };
   return (
     <main className={classes.auth}>
