@@ -12,7 +12,12 @@ export const fetchCartData = () => {
         throw new Error("Sending data fail!!");
       }
       const data = await response.json();
-      dispatch(cartActions.replaceCart(data));
+      dispatch(
+        cartActions.replaceCart({
+          items: data.items || [],
+          totalQuantity: data.totalQuantity || 0,
+        })
+      );
     };
 
     try {
