@@ -4,7 +4,7 @@ import Layout from "./components/Layout/Layout";
 import Products from "./components/Shop/Products";
 import Notification from "./components/UI/Notification";
 import { useSelector, useDispatch } from "react-redux";
-import { sendCartData } from "./store/cart";
+import { fetchCartData, sendCartData } from "./store/cartActionsCreator";
 
 let flag = true;
 
@@ -15,11 +15,17 @@ function App() {
   const cart = useSelector((state) => state.cart);
 
   useEffect(() => {
+    dispatch(fetchCartData());
+  }, [dispatch]);
+
+  useEffect(() => {
     if (flag) {
       flag = false;
       return;
     }
-    dispatch(sendCartData(cart));
+    if (cart.changed) {
+      dispatch(sendCartData(cart));
+    }
   }, [cart, dispatch]);
 
   return (
