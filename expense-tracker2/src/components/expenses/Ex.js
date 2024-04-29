@@ -1,18 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 
-const Greeting = () => {
+const Ex = () => {
   const [text, setText] = useState(false);
   const clickHandler = () => {
     setText(true);
   };
   return (
     <div>
-      <h1>Hello world!!</h1>
-      {!text && <p>priti kirme</p>}
-      {text && <p>sagar</p>}
+      <p>Hi</p>
+
+      <p>priti</p>
+      {text && <h1>sagar</h1>}
+
       <button onClick={clickHandler}>Click</button>
     </div>
   );
 };
 
-export default Greeting;
+export default Ex;

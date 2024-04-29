@@ -9,9 +9,6 @@ import SignUp from "./pages/SignUp";
 import WelcomePage from "./pages/WelcomePage";
 import ProfilePage from "./pages/ProfilePage";
 
-// import axios from "axios";
-
-import "./App.css";
 import {
   fetchExpenseData,
   sendExpenseData,

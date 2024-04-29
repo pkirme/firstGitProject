@@ -4,7 +4,7 @@ import ExpenseForm from "./ExpenseForm";
 describe("ExpenseForm component", () => {
   test("Check title", () => {
     render(<ExpenseForm />);
-    const checkTitle = screen.getByText(/Expense/i);
+    const checkTitle = screen.getByText("Expense");
     expect(checkTitle).toBeInTheDocument();
   });
 });
